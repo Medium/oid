@@ -55,8 +55,9 @@ not the same but which *do* have the same identity hash. Somewhat
 more mathematically: `hash(x) !== hash(y)` implies that `x !== y`, but
 `hash(x) === hash(y)` does not imply that `x === y`.
 
-For regular objects (including arrays and functions), this returns an
-arbitrary internally-generated id number.
+For normal objects (including arrays, functions, and regular
+expressions), this returns an arbitrary internally-generated id
+number.
 
 For strings, this returns a hash based on the characters contained in
 the string. The algorithm used is similar to (but not quite identical
