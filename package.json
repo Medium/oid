@@ -1,0 +1,32 @@
+{
+    "name": "oid",
+    "version": "0.0.1",
+    "keywords":
+        ["object", "id", "identity", "hash", "hashcode", "objid", "oid"],
+    "description":
+        "Utilities for object identity",
+    "homepage": "https://github.com/Obvious/oid",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Obvious/oid.git"
+    },
+    "licenses": [ {
+        "type": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    } ],
+    "author": "Dan Bornstein <danfuzz@milk.com>",
+    "maintainers": [ {
+        "name": "Dan Bornstein",
+        "email": "danfuzz@obvious.com",
+        "web": "http://www.milk.com/"
+    } ],
+
+    "main": "lib/oid.js",
+    "engine": {
+        "node": ">=0.6.0"
+    },
+
+    "scripts": {
+        "install": "node-waf configure build"
+    }
+}
