@@ -41,16 +41,26 @@ Top-Level Exports
 
 ### oid.hash(value)
 
-Return an identity hash of the given value. The return value is guaranteed
-to be a positive (non-negative and non-zero) integer value. The return value
-is *never* guaranteed to be unique.
+Return an identity hash of the given value or object. The return value
+from two calls to this function are guaranteed to be the same when
+given the same input, where "same" is the relationship defined by the
+triple-equals (`===`) operator of JavaScript.
+
+The return value is furthermore guaranteed to be a positive
+(non-negative and non-zero) integer value.
+
+The return value is *never* guaranteed to be unique across multiple
+values. That is, there are many pairs of values or objects that are
+not the same but which *do* have the same identity hash. Somewhat
+more mathematically: `hash(x) !== hash(y)` implies that `x !== y`, but
+`hash(x) === hash(y)` does not imply that `x === y`.
 
 For regular objects (including arrays and functions), this returns an
 arbitrary internally-generated id number.
 
 For strings, this returns a hash based on the characters contained in
-the string. The algorithm used is similar to that used by `String.hashCode()`
-in Java.
+the string. The algorithm used is similar to (but not quite identical
+to) that used by `String.hashCode()` in Java.
 
 For numbers, this returns a hash based on the numeric value. More specifically,
 it is produced by inspecting the underlying byte representation of the
