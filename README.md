@@ -1,11 +1,13 @@
 oid
 ===
 
-This Node module provides a simple utility for object identity hashing.
-This can be useful any time you need to do triple-equals style comparisons
-across arbitrary numbers of objects. You can instead get the identity hash
-of the things you want to compare, and use those in clever ways to avoid
-a lot of triple-equals comparisons.
+This Node module provides a simple utility for object identity
+hashing.  This can be useful any time you need to do triple-equals
+(`===`) style comparisons across arbitrary numbers of objects. Instead
+of doing an O(N^2) set of comparisons, you can instead get the
+identity hash of the things you want to compare, and use those in
+clever ways to whittle down the required comparisons, often allowing
+O(1) implementations.
 
 A future version of this module may provide a couple common uses of this
 functionality, namely identity-keyed maps and sets.
