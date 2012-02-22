@@ -1,16 +1,13 @@
 oid
 ===
 
-This Node module provides a simple utility for object identity
-hashing.  This can be useful any time you need to do triple-equals
-(`===`) style comparisons across arbitrary numbers of objects. Instead
-of doing an O(N^2) set of comparisons, you can instead get the
-identity hash of the things you want to compare, and use those in
-clever ways to whittle down the required comparisons, often allowing
-O(1) implementations.
-
-A future version of this module may provide a couple common uses of this
-functionality, namely identity-keyed maps and sets.
+This Node module provides a simple utility for object identity hashing
+and two related classes. This can be useful any time you need to do
+triple-equals (`===`) style comparisons across arbitrary numbers of
+objects. Instead of doing an O(N^2) set of comparisons, you can
+instead get the identity hash of the things you want to compare, and
+use those in clever ways to whittle down the required comparisons,
+often allowing O(1) implementations.
 
 
 Installing
@@ -36,10 +33,10 @@ node ./test/test.js
 Usage
 -----
 
-This library currently provides just one function.
+This library provides one regular function and two constructors.
 
-Top-Level Exports
------------------
+Top-Level Functions
+-------------------
 
 ### oid.hash(value)
 
@@ -73,6 +70,63 @@ implementations of JavaScript.
 For booleans, null, and the undefined value, this returns a particular
 predefined value (different for each), which are all prime numbers
 representable with five digits in base ten.
+
+Identity Maps
+-------------
+
+### idmap = oid.createMap()
+
+This constructs a map (key-value association), where the keys are
+arbitrary objects or values, compared by identity.
+
+### idmap.get(key, ifNotFound)
+
+Get the value associated with the given key. If there is no mapping
+for the key, return the `ifNotFound` argument (which defaults to
+undefined).
+
+### idmap.set(key, value, ifNotFound)
+
+Set the value associated with the given key to the given value, and
+return the previously associated value. If there was no previous
+mapping for the key, return the ifNotFound argument (which defaults to
+undefined).
+
+### idmap.has(key)
+
+Return `true` if there is a mapping for the given key or `false`
+if not.
+
+### idmap.remove(key, ifNotFound)
+
+Remove the mapping for the given key, returning its formerly
+associated value or the ifNotFound value if the key wasn't formerly
+mapped.
+
+Identity Sets
+-------------
+
+### idset = oid.createSet()
+
+This constructs a set (unordered list of objects and/or values),
+where set membership is determined by identity comparison.
+
+### idset.has(value)
+
+Return `true` if there the given value is in the set or `false` if not.
+
+### idset.add(value)
+
+Add the given value to the set. Returns `true` if this operation
+actually changed the set (that is, `true` if the item wasn't already
+in the set).
+
+### idset.remove(value)
+
+Remove the given value from the set. Returns `true` if this operation
+actually changed the set (that is, `true` if the item in fact was in
+the set to begin with).
+
 
 Contributing
 ------------

@@ -64,4 +64,6 @@ validate(hash({a: 1, b: 2}));
 validate(hash(/Stand back!/));
 validate(hash(function x() { return x; }));
 
+// FIXME: Test set and map implementations.
+
 console.log("All tests pass!");
