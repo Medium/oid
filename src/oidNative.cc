@@ -18,13 +18,14 @@ static Handle<Value> scheduleException(const char* message) {
 Handle<Value> ObjectIdHash(const Arguments& args) {
     HandleScope scope;
 
-    Local<Object> obj = args[0]->ToObject();
-    if (obj.IsEmpty()) {
-        return scheduleException("Not an object.");
+    Local<Value> val = args[0];
+    if (val->IsNull()) {
+        return scope.Close(Integer::New(99961)); // A prime number.
     }
 
-    if (obj->IsNull()) {
-        return scheduleException("~~~ Got null.");
+    Local<Object> obj = val->ToObject();
+    if (obj.IsEmpty()) {
+        return scheduleException("Not an object.");
     }
 
     int hash = obj->GetIdentityHash() & 0x7fffffff;
@@ -55,12 +56,18 @@ Handle<Value> NumberIdHash(const Arguments& args) {
 
     hood.doubleValue = num->Value();
 
-    int hash = 0xdbdb;
+    int hash = 56081; // A prime number.
     for (int i = 0; i < sizeof(double); i++) {
         hash = (hash * 31) + hood.buffer[i];
     }
 
     hash &= 0x7fffffff;
+
+    if (hash == 0) {
+        // Guarantee non-zero.
+        hash = 1;
+    }
+
     return scope.Close(Number::New((double) hash));
 }
 
