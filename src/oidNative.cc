@@ -9,7 +9,7 @@ using namespace v8;
  * Helper to schedule an exception with the given message and return
  * undefined.
  */
-static Handle<Value> scheduleException(const char* messsage) {
+static Handle<Value> scheduleException(const char* message) {
     Local<Value> exception = Exception::Error(String::New(message));
     ThrowException(exception);
     return Undefined();
@@ -19,7 +19,7 @@ Handle<Value> ObjectIdHash(const Arguments& args) {
     HandleScope scope;
 
     Local<Object> obj = args[0]->ToObject();
-    if (obj->IsEmpty()) {
+    if (obj.IsEmpty()) {
         return scheduleException("Not an object.");
     }
 
@@ -44,13 +44,13 @@ Handle<Value> NumberIdHash(const Arguments& args) {
     HandleScope scope;
 
     Local<Number> num = args[0]->ToNumber();
-    if (num->IsEmpty()) {
+    if (num.IsEmpty()) {
         return scheduleException("Not a number.");
     }
 
     union {
         double doubleValue;
-        unsigned char[sizeof(double)] buffer;
+        unsigned char buffer[sizeof(double)];
     } hood;
 
     hood.doubleValue = num->Value();
