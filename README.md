@@ -71,13 +71,24 @@ For booleans, null, and the undefined value, this returns a particular
 predefined value (different for each), which are all prime numbers
 representable with five digits in base ten.
 
+### idmap = oid.createMap()
+
+See below.
+
+### idset = oid.createSet()
+
+See below.
+
+
 Identity Maps
 -------------
 
+An identity map is a set of key-value associations, where the
+keys are arbitrary objects or values, compared by identity.
+
 ### idmap = oid.createMap()
 
-This constructs a map (key-value association), where the keys are
-arbitrary objects or values, compared by identity.
+This constructs and returns a new identity map.
 
 ### idmap.get(key, ifNotFound)
 
@@ -106,10 +117,13 @@ mapped.
 Identity Sets
 -------------
 
+An identity set is a set (unordered list of unique elements) of
+objects / values, where set membership is determined by identity
+comparison.
+
 ### idset = oid.createSet()
 
-This constructs a set (unordered list of objects and/or values),
-where set membership is determined by identity comparison.
+This constructs and returns a new identity set.
 
 ### idset.has(value)
 
@@ -126,6 +140,14 @@ in the set).
 Remove the given value from the set. Returns `true` if this operation
 actually changed the set (that is, `true` if the item in fact was in
 the set to begin with).
+
+To Do
+-----
+
+* The two collection classes probably ought to have iteration methods.
+
+* A weak-key identity map class and a weak-contents identity set class
+  would probably be handy.
 
 
 Contributing
