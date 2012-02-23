@@ -30,6 +30,57 @@ Testing
 node ./test/test.js
 ```
 
+Example
+-------
+
+This example (also available in the example directory) deduplicates
+the elements of an array in O(N) time (instead of O(N^2)), by taking
+advantage of an identity set.
+
+```javascript
+function dedup(orig) {
+    var result = [];
+    var elements = oid.createSet();
+
+    for (var i = 0; i < orig.length; i++) {
+        var one = orig[i];
+        if (elements.add(one)) {
+            result.push(one);
+        }
+    }
+
+    return result;
+}
+```
+
+Here's a transcript of a use of this function as well as the more
+fundamental `hash()` function. Note that the literal syntax `[]`
+creates a new object with a distinct identity each time it is
+executed.
+
+```
+> x = []
+[]
+> y = []
+[]
+> z = y
+[]
+> x === y
+false
+> oid.hash(x) === oid.hash(y)
+false
+> z === y
+true
+> oid.hash(z) === oid.hash(y)
+true
+> a = dedup([x, y, x, x, y, y, 1, 2, 3, 1, 2, 3, x, y, "yumminess"])
+[ [], [], 1, 2, 3, 'yumminess' ]
+> a[0] === x
+true
+> a[1] === y
+true
+```
+
 Usage
 -----
 
