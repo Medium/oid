@@ -200,6 +200,9 @@ To Do
 * A weak-key identity map class and a weak-contents identity set class
   would probably be handy.
 
+* It seems reasonable that this module provide efficient implementations
+  of deep variants of `clone()` and `isEqual()`.
+
 
 Contributing
 ------------
