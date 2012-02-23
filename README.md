@@ -5,7 +5,7 @@ This Node module provides a simple utility for object identity hashing
 and two related classes. This can be useful any time you need to do
 triple-equals (`===`) style comparisons across arbitrary numbers of
 objects. Instead of doing an O(N^2) set of comparisons, you can
-instead get the identity hash of the things you want to compare, and
+instead get the identity hashes of the things you want to compare, and
 use those in clever ways to whittle down the required comparisons,
 often allowing O(1) implementations.
 
