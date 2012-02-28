@@ -1,6 +1,6 @@
 {
     "name": "oid",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "keywords":
         ["object", "id", "identity", "hash", "hashcode", "objid", "oid"],
     "description":

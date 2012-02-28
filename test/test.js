@@ -8,6 +8,8 @@
  * Modules used
  */
 
+"use strict";
+
 var assert = require("assert");
 
 var oid = require("../lib/oid");
