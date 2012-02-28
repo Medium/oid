@@ -10,8 +10,8 @@ use those in clever ways to whittle down the required comparisons,
 often allowing O(1) implementations.
 
 
-Installing
-----------
+Building and Installing
+-----------------------
 
 ```shell
 npm install oid
@@ -25,6 +25,12 @@ node-waf configure build
 
 Testing
 -------
+
+```shell
+npm test
+```
+
+Or
 
 ```shell
 node ./test/test.js
