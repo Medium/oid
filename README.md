@@ -165,6 +165,12 @@ Remove the mapping for the given key, returning its formerly
 associated value or the ifNotFound value if the key wasn't formerly
 mapped.
 
+### idmap.forEach(callback)
+
+Call the given callback as `callback(key, value)` for each association
+in the map. There is no guarantee about what order the callbacks will
+be made in.
+
 Identity Sets
 -------------
 
@@ -191,6 +197,12 @@ in the set).
 Remove the given value from the set. Returns `true` if this operation
 actually changed the set (that is, `true` if the item in fact was in
 the set to begin with).
+
+### idset.forEach(callback)
+
+Call the given callback as `callback(value)` for each element
+of the set. There is no guarantee about what order the callbacks will
+be made in.
 
 To Do
 -----
