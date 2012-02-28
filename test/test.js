@@ -11,6 +11,7 @@
 "use strict";
 
 var assert = require("assert");
+var util   = require("util");
 
 var oid = require("../lib/oid");
 
@@ -36,7 +37,7 @@ function validate(hash) {
  * Tests
  */
 
-function testHash() {
+function testHashBasics() {
     var hash = oid.hash;
 
     assert.equal(hash(null),      99961);
@@ -69,7 +70,7 @@ function testHash() {
     validate(hash(function x() { return x; }));
 }
 
-function testMap() {
+function testMapBasics() {
     var map = oid.createMap();
 
     assert.equal(map.get(1), undefined);
@@ -110,7 +111,7 @@ function testMap() {
     assert.equal(map.get(x, "aha"), undefined);
 }
 
-function testSet() {
+function testSetBasics() {
     var set = oid.createSet();
 
     assert.equal(set.has(1), false);
@@ -144,7 +145,63 @@ function testSet() {
     assert.equal(set.has(x), false);
 }
 
-testHash();
-testMap();
-testSet();
+function testMap_forEach() {
+    var pairs = [
+        { k: [],      v: "empty one" },
+        { k: [],      v: "empty two" },
+        { k: [],      v: "empty three" },
+        { k: [],      v: "empty four" },
+        { k: [],      v: "empty five" },
+        { k: 10,      v: "ten" },
+        { k: {a: 1},  v: "a-one" },
+        { k: [1,2,3], v: 123 }
+    ];
+
+    var map = oid.createMap();
+    pairs.forEach(function (p) { map.set(p.k, p.v); });
+
+    function killPair(k, v) {
+        for (var i = 0; i < pairs.length; i++) {
+            var one = pairs[i];
+            if ((one.k === k) && (one.v === v)) {
+                pairs.splice(i, 1);
+                return;
+            }
+        }
+        throw new Error(util.format("Did not find:", k, v));
+    }
+
+    map.forEach(killPair);
+    assert.equal(pairs.length, 0);
+}
+
+function testSet_forEach() {
+    var elements = [
+        [], [], [], [], [], [1,2,3], [1,2,3], {a:1}, {a:1},
+        "foo", 2.4, 4.8
+    ];
+
+    var set = oid.createSet();
+    elements.forEach(function (e) { set.add(e); });
+
+    function killElement(v) {
+        for (var i = 0; i < elements.length; i++) {
+            if (elements[i] === v) {
+                elements.splice(i, 1);
+                return;
+            }
+        }
+        throw new Error(util.format("Did not find:", v));
+    }
+
+    set.forEach(killElement);
+    assert.equal(elements.length, 0);
+}
+
+testHashBasics();
+testMapBasics();
+testSetBasics();
+testMap_forEach();
+testSet_forEach();
+
 console.log("All tests pass!");
