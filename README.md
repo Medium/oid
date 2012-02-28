@@ -207,7 +207,7 @@ be made in.
 To Do
 -----
 
-* The two collection classes probably ought to have iteration methods.
+* The two collection classes probably ought to have more iteration methods.
 
 * A weak-key identity map class and a weak-contents identity set class
   would probably be handy.
