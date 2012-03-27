@@ -171,6 +171,10 @@ Remove the mapping for the given key, returning its formerly
 associated value or the ifNotFound value if the key wasn't formerly
 mapped.
 
+### idmap.size()
+
+Get the number of elements in the map.
+
 ### idmap.forEach(callback)
 
 Call the given callback as `callback(key, value)` for each association
@@ -203,6 +207,10 @@ in the set).
 Remove the given value from the set. Returns `true` if this operation
 actually changed the set (that is, `true` if the item in fact was in
 the set to begin with).
+
+### idset.size()
+
+Get the number of elements in the set.
 
 ### idset.forEach(callback)
 

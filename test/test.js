@@ -78,16 +78,19 @@ function testMapBasics() {
     assert.equal(map.has(1), false);
     assert.equal(map.has("yo"), false);
     assert.equal(map.has([]), false);
+    assert.equal(map.size(), 0);
     
     assert.equal(map.set("foo", "bar"), undefined);
     assert.equal(map.get("foo"), "bar");
     assert.equal(map.has("foo"), true);
+    assert.equal(map.size(), 1);
 
     assert.equal(map.set(1, "zorch", "xyz"), "xyz");
     assert.equal(map.get(1), "zorch");
     assert.equal(map.get(1, "blort"), "zorch");
     assert.equal(map.set(1, "spaz"), "zorch");
     assert.equal(map.get(1), "spaz");
+    assert.equal(map.size(), 2);
 
     var x = {};
     assert.equal(map.set(x, "fizmo"), undefined);
@@ -95,11 +98,13 @@ function testMapBasics() {
     assert.equal(map.get({}), undefined);
     assert.equal(map.has(x), true);
     assert.equal(map.has({}), false);
+    assert.equal(map.size(), 3);
     assert.equal(map.remove({}), undefined);
     assert.equal(map.has(x), true);
     assert.equal(map.remove({}, "igram"), "igram");
     assert.equal(map.remove(x), "fizmo");
     assert.equal(map.has(x), false);
+    assert.equal(map.size(), 2);
 
     map.set(undefined, "hi");
     assert.equal(map.get(undefined), "hi");
@@ -121,13 +126,17 @@ function testSetBasics() {
     assert.equal(set.has(null), false);
     assert.equal(set.has(undefined), false);
     assert.equal(set.has(true), false);
+    assert.equal(set.size(), 0);
 
     assert.equal(set.add("x"), true);
     assert.equal(set.add("x"), false);
     assert.equal(set.has("x"), true);
+    assert.equal(set.size(), 1);
     assert.equal(set.remove("x"), true);
+    assert.equal(set.size(), 0);
     assert.equal(set.remove("x"), false);
     assert.equal(set.has("x"), false);
+    assert.equal(set.size(), 0);
 
     assert.equal(set.add(undefined), true);
     assert.equal(set.has(undefined), true);
