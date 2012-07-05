@@ -4,7 +4,7 @@
     "keywords":
         ["object", "id", "identity", "hash", "hashcode", "objid", "oid"],
     "description":
-        "Utilities for object identity",
+        "Utilities for object identity and hashing",
     "homepage": "https://github.com/Obvious/oid",
     "repository": {
         "type": "git",
