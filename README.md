@@ -124,7 +124,7 @@ it is produced by inspecting the underlying byte representation of the
 value. As such, it is not guaranteed to be stable across different
 implementations of JavaScript.
 
-For booleans, null, and the undefined value, this returns a particular
+For booleans, `null`, and `undefined`, this returns a particular
 predefined value (different for each), which are all prime numbers
 representable with five digits in base ten.
 
@@ -147,31 +147,31 @@ keys are arbitrary objects or values, compared by identity.
 
 This constructs and returns a new identity map.
 
-### idmap.get(key, ifNotFound)
+### idmap.get(key, ifNotFound) => value
 
 Get the value associated with the given key. If there is no mapping
 for the key, return the `ifNotFound` argument (which defaults to
-undefined).
+`undefined`).
 
-### idmap.set(key, value, ifNotFound)
+### idmap.set(key, value, ifNotFound) => previousValue
 
 Set the value associated with the given key to the given value, and
 return the previously associated value. If there was no previous
-mapping for the key, return the ifNotFound argument (which defaults to
-undefined).
+mapping for the key, return the `ifNotFound` argument (which defaults
+to `undefined`).
 
-### idmap.has(key)
+### idmap.has(key) => boolean
 
 Return `true` if there is a mapping for the given key or `false`
 if not.
 
-### idmap.remove(key, ifNotFound)
+### idmap.remove(key, ifNotFound) => previousValue
 
 Remove the mapping for the given key, returning its formerly
-associated value or the ifNotFound value if the key wasn't formerly
+associated value or the `ifNotFound` value if the key wasn't formerly
 mapped.
 
-### idmap.size()
+### idmap.size() => int
 
 Get the number of elements in the map.
 
@@ -192,23 +192,23 @@ comparison.
 
 This constructs and returns a new identity set.
 
-### idset.has(value)
+### idset.has(value) => boolean
 
 Return `true` if there the given value is in the set or `false` if not.
 
-### idset.add(value)
+### idset.add(value) => boolean
 
 Add the given value to the set. Returns `true` if this operation
 actually changed the set (that is, `true` if the item wasn't already
 in the set).
 
-### idset.remove(value)
+### idset.remove(value) => boolean
 
 Remove the given value from the set. Returns `true` if this operation
 actually changed the set (that is, `true` if the item in fact was in
 the set to begin with).
 
-### idset.size()
+### idset.size() => int
 
 Get the number of elements in the set.
 
