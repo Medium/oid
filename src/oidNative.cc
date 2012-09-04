@@ -57,7 +57,7 @@ Handle<Value> NumberIdHash(const Arguments& args) {
     hood.doubleValue = num->Value();
 
     int hash = 56081; // A prime number.
-    for (int i = 0; i < sizeof(double); i++) {
+    for (size_t i = 0; i < sizeof(double); i++) {
         hash = (hash * 31) + hood.buffer[i];
     }
 

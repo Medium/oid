@@ -1,6 +1,6 @@
 {
     "name": "oid",
-    "version": "0.4.6",
+    "version": "0.5.0",
     "keywords":
         ["object", "id", "identity", "hash", "hashcode", "objid", "oid"],
     "description":
@@ -31,7 +31,7 @@
     },
 
     "scripts": {
-        "install": "node-waf configure build",
+        "install": "node-gyp configure build; mkdir -p bin; mv build/Release/*.node bin",
         "test": "node test/test.js"
     }
 }
