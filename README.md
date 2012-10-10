@@ -23,6 +23,11 @@ Or grab the source and
 node-waf configure build
 ```
 
+**Note**: This module contains native code, and so you will have
+to have a C compiler available. Consult your OS documentation for
+details on setting that up.
+
+
 Testing
 -------
 
