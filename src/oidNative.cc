@@ -1,31 +1,22 @@
 // Copyright 2012 The Obvious Corporation.
 
 #include <node.h>
+#include <nan.h>
 #include <v8.h>
 
 using namespace v8;
 
-/**
- * Helper to schedule an exception with the given message and return
- * undefined.
- */
-static Handle<Value> scheduleException(const char* message) {
-    Local<Value> exception = Exception::Error(String::New(message));
-    ThrowException(exception);
-    return Undefined();
-}
-
-Handle<Value> ObjectIdHash(const Arguments& args) {
-    HandleScope scope;
+NAN_METHOD(ObjectIdHash) {
+    NanScope();
 
     Local<Value> val = args[0];
     if (val->IsNull()) {
-        return scope.Close(Integer::New(99961)); // A prime number.
+        NanReturnValue(NanNew<Integer>(99961)); // A prime number.
     }
 
     Local<Object> obj = val->ToObject();
     if (obj.IsEmpty()) {
-        return scheduleException("Not an object.");
+        return NanThrowError("Not an object.");
     }
 
     int hash = obj->GetIdentityHash() & 0x7fffffff;
@@ -38,15 +29,15 @@ Handle<Value> ObjectIdHash(const Arguments& args) {
         hash = 1;
     }
 
-    return scope.Close(Integer::New(hash));
+    NanReturnValue(NanNew<Integer>(hash));
 }
 
-Handle<Value> NumberIdHash(const Arguments& args) {
-    HandleScope scope;
+NAN_METHOD(NumberIdHash) {
+    NanScope();
 
     Local<Number> num = args[0]->ToNumber();
     if (num.IsEmpty()) {
-        return scheduleException("Not a number.");
+        return NanThrowError("Not a number.");
     }
 
     union {
@@ -68,14 +59,14 @@ Handle<Value> NumberIdHash(const Arguments& args) {
         hash = 1;
     }
 
-    return scope.Close(Number::New((double) hash));
+    NanReturnValue(NanNew<Number>((double) hash));
 }
 
 void init(Handle<Object> target) {
-    target->Set(String::NewSymbol("objectIdHash"),
-                FunctionTemplate::New(ObjectIdHash)->GetFunction());
-    target->Set(String::NewSymbol("numberIdHash"),
-                FunctionTemplate::New(NumberIdHash)->GetFunction());
+    target->Set(NanNew<String>("objectIdHash"),
+                NanNew<FunctionTemplate>(ObjectIdHash)->GetFunction());
+    target->Set(NanNew<String>("numberIdHash"),
+                NanNew<FunctionTemplate>(NumberIdHash)->GetFunction());
 }
 
 NODE_MODULE(oidNative, init)

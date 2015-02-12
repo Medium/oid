@@ -1,14 +1,14 @@
 {
     "name": "oid",
-    "version": "0.5.1",
+    "version": "1.0.0",
     "keywords":
         ["object", "id", "identity", "hash", "hashcode", "objid", "oid"],
     "description":
         "Utilities for object identity and hashing",
-    "homepage": "https://github.com/Obvious/oid",
+    "homepage": "https://github.com/Medium/oid",
     "repository": {
         "type": "git",
-        "url": "https://github.com/Obvious/oid.git"
+        "url": "https://github.com/Medium/oid.git"
     },
     "licenses": [ {
         "type": "Apache 2.0",
@@ -27,7 +27,10 @@
 
     "main": "lib/oid.js",
     "engine": {
-        "node": ">=0.6.0"
+        "node": ">=0.8.0"
+    },
+    "dependencies": {
+        "nan": "1.6.2"
     },
 
     "scripts": {
