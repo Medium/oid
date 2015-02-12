@@ -1,6 +1,8 @@
 oid
 ===
 
+[![Build Status](https://travis-ci.org/Medium/oid.svg)](https://travis-ci.org/Medium/oid)
+
 This Node module provides a simple utility for object identity hashing
 and two related classes. This can be useful any time you need to do
 triple-equals (`===`) style comparisons across arbitrary numbers of
