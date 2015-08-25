@@ -1,6 +1,6 @@
 {
     "name": "oid",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "keywords":
         ["object", "id", "identity", "hash", "hashcode", "objid", "oid"],
     "description":
@@ -30,9 +30,8 @@
         "node": ">=0.8.0"
     },
     "dependencies": {
-        "nan": "~1.8"
+        "nan": "^2.0.5"
     },
-
     "scripts": {
         "install": "node-gyp configure build; mkdir -p bin; mv build/Release/*.node bin",
         "test": "node test/test.js"
